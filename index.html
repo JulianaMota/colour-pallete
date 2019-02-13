@@ -9,9 +9,10 @@
   </head>
   <body>
     <h1>Colour Pallete</h1>
-    <form action="chose color">
-      <label for="head">Chose Colour</label>
-      <input type="color" id="head" name="head" value="#e66465" />
+    <form>
+      <label for="colorPicker">Chose Colour</label>
+      <input type="color" id="colorPicker" name="colorPicker" value="#e66465" />
+
       <label for="pet-select">Choose a colour harmony:</label>
 
       <select id="pet-select">
@@ -26,9 +27,11 @@
     </form>
     <section>
       <div>
-        <div class="colour-square"></div>
+        <div class="colour-square color1"></div>
         <ul>
-          <li><p>HEX</p></li>
+          <li>
+            <p class="hexCode">HEX <span></span></p>
+          </li>
           <li>
             <p>RGB</p>
           </li>
@@ -47,14 +50,7 @@
       </div>
 
       <div>
-        <input
-          class="colour-square"
-          type="color"
-          id="head"
-          name="head"
-          value="#e66465"
-        />
-        <label for="head">Chose Colour</label>
+        <div class="colour-square"></div>
         <ul>
           <li><p>HEX</p></li>
           <li>
@@ -84,5 +80,6 @@
         </ul>
       </div>
     </section>
+    <script src="index.js"></script>
   </body>
 </html>
