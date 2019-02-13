@@ -130,11 +130,38 @@ table {
 /*****************styling************************/
 body {
   font-family: sans-serif;
+  background-color: black;
+  color: rgb(146, 144, 127);
 }
 h1 {
   font-size: 20px;
   text-align: center;
-  padding: 20px 0 20px 0;
+  padding: 40px 0 40px 0;
+  font-weight: bold;
+  color: rgb(146, 144, 127);
+}
+form {
+  display: grid;
+  grid-template: 1fr / 10% 1fr 20% 1fr;
+  background-color: rgb(187, 184, 161);
+  height: 50px;
+  color: #000;
+}
+#colorPicker {
+  justify-self: left;
+  align-self: center;
+  box-shadow: 3px 3px 5px #444444;
+  height: 30px;
+  width: 70px;
+}
+#colorselect {
+  background-color: rgb(146, 144, 127);
+  font-size: 16px;
+  font-weight: bold;
+}
+form label {
+  justify-self: center;
+  align-self: center;
   font-weight: bold;
 }
 section {
@@ -147,7 +174,9 @@ section {
   min-height: 200px;
   width: 100%;
   box-sizing: border-box;
+  background-color: white;
 }
-.color1 {
-  background-color: ;
+section ul li {
+  font-weight: bold;
+  padding: 20px;
 }
