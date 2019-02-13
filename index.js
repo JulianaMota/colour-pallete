@@ -10,9 +10,13 @@ const color2 = document.querySelector(".color2");
 const color3 = document.querySelector(".color3");
 const color4 = document.querySelector(".color4");
 const color5 = document.querySelector(".color5");
-const colorHarmony = document.querySelector("#colorselect");
+const colorHarmony = document.getElementById("colorselect");
 let anaSelect = false;
 let monoSelect = false;
+let shadSelect = false;
+let triSelect = false;
+let compleSelect = false;
+let compoSelect = false;
 
 function colorValue() {
   colorPicker = document.querySelector("#colorPicker");
@@ -36,18 +40,68 @@ function updateFirst(event) {
   console.log(event);
 }
 
-colorHarmony.addEventListener("change", optionsFunction, false);
-function optionsFunction(ev) {
-  console.log(ev);
-  if (ev.target.value == "Analogous") {
-    anaSelect = true;
-    monoSelect = false;
-  }
-  if (ev.target.value == "Monochromatic") {
-    anaSelect = false;
-    monoSelect = true;
-  }
-}
+colorHarmony.addEventListener(
+  "change",
+  function optionFunction() {
+    console.log(this.value);
+    if (this.value == "") {
+      color2.style.backgroundColor = "white";
+      color3.style.backgroundColor = "white";
+      color4.style.backgroundColor = "white";
+      color5.style.backgroundColor = "white";
+    }
+    if (this.value == "Analogous") {
+      anaSelect = true;
+      monoSelect = false;
+      shadSelect = false;
+      triSelect = false;
+      compleSelect = false;
+    }
+    if (this.value == "Monochromatic") {
+      anaSelect = false;
+      monoSelect = true;
+      shadSelect = false;
+      triSelect = false;
+      compleSelect = false;
+      compoSelect = false;
+    }
+    if (this.value == "Shades") {
+      anaSelect = false;
+      monoSelect = false;
+      shadSelect = true;
+      triSelect = false;
+      compleSelect = false;
+      compoSelect = false;
+    }
+    if (this.value == "Triad") {
+      anaSelect = false;
+      monoSelect = false;
+      shadSelect = false;
+      triSelect = true;
+      compleSelect = false;
+      compoSelect = false;
+    }
+    if (this.value == "Complementary") {
+      anaSelect = false;
+      monoSelect = false;
+      shadSelect = false;
+      triSelect = false;
+      compleSelect = true;
+      compoSelect = false;
+    }
+    if (this.value == "Compound") {
+      anaSelect = false;
+      monoSelect = false;
+      shadSelect = false;
+      triSelect = false;
+      compleSelect = false;
+      compoSelect = true;
+    }
+
+    updateFirst(event);
+  },
+  false
+);
 
 function rgbCodeFuntion(rgbCode) {
   console.log(rgbCode);
@@ -103,11 +157,21 @@ function RGBtoHSL(r, g, b) {
   if (monoSelect) {
     monocromaticfunction(h, s, l);
   }
+  if (shadSelect) {
+    shadefunction(h, s, l);
+  }
+  if (triSelect) {
+    triadfunction(h, s, l);
+  }
+  if (compleSelect) {
+    complementaryfunction(h, s, l);
+  }
+  if (compoSelect) {
+    compoundfunction(h, s, l);
+  }
 }
 
-/*document
-  .querySelector(".ana")
-  .addEventListener("click", analogfuntion(h, s, l));*/
+// analog colors
 
 function analogfuntion(h, s, l) {
   console.log(h, s, l);
@@ -128,9 +192,7 @@ function analogfuntion(h, s, l) {
   color5.style.backgroundColor = `hsl(${hAnalog5},${s}%,${l}%)`;
 }
 
-/*document
-  .querySelector(".mono")
-  .addEventListener("click", monocromaticfunction(h, s, l));*/
+// monocromatic colors
 
 function monocromaticfunction(h, s, l) {
   console.log(h, s, l);
@@ -151,6 +213,89 @@ function monocromaticfunction(h, s, l) {
   color5.style.backgroundColor = `hsl(${h},${s}%,${lmono5}%)`;
 }
 
-/*function getHexNumber() {
-  console.log(hexCode);
-}*/
+// shades colors
+
+function shadefunction(h, s, l) {
+  console.log(h, s, l);
+  const sShade2 = s - 30;
+  console.log(sShade2);
+  color2.style.backgroundColor = `hsl(${h},${sShade2}%,${l}%)`;
+
+  const sShade3 = s - 50;
+  console.log(sShade3);
+  color3.style.backgroundColor = `hsl(${h},${sShade3}%,${l}%)`;
+
+  const sShade4 = s - 70;
+  console.log(sShade4);
+  color4.style.backgroundColor = `hsl(${h},${sShade4}%,${l}%)`;
+
+  const sShade5 = s - 90;
+  console.log(sShade5);
+  color5.style.backgroundColor = `hsl(${h},${sShade5}%,${l}%)`;
+}
+
+// triad colors
+
+function triadfunction(h, s, l) {
+  console.log(h, s, l);
+  const hTri2 = h + 120;
+  console.log(hTri2);
+  color2.style.backgroundColor = `hsl(${hTri2},${s}%,${l}%)`;
+
+  const hTri3 = h + 120;
+  const sTri3 = s - 50;
+  console.log(hTri3);
+  color3.style.backgroundColor = `hsl(${hTri3},${sTri3}%,${l}%)`;
+
+  const hTri4 = h - 120;
+  console.log(hTri4);
+  color4.style.backgroundColor = `hsl(${hTri4},${s}%,${l}%)`;
+
+  const hTri5 = h - 120;
+  const sTri5 = s - 50;
+  console.log(hTri5);
+  color5.style.backgroundColor = `hsl(${hTri5},${sTri5}%,${l}%)`;
+}
+
+// complementary colors
+
+function complementaryfunction(h, s, l) {
+  console.log(h, s, l);
+  const lcompl2 = l - 7;
+  console.log(lcompl2);
+  color2.style.backgroundColor = `hsl(${h},${s}%,${lcompl2}%)`;
+
+  const lcompl3 = l + 7;
+  console.log(lcompl3);
+  color3.style.backgroundColor = `hsl(${h},${s}%,${lcompl3}%)`;
+
+  const hcompl4 = h + 180;
+  const lcompl4 = l + 7;
+  console.log(hcompl4);
+  color4.style.backgroundColor = `hsl(${hcompl4},${s}%,${lcompl4}%)`;
+
+  const hcompl5 = h + 180;
+  console.log(hcompl5);
+  color5.style.backgroundColor = `hsl(${hcompl5},${s}%,${l}%)`;
+}
+
+// compound colors
+
+function compoundfunction(h, s, l) {
+  console.log(h, s, l);
+  const hcompo2 = h + 30;
+  console.log(hcompo2);
+  color2.style.backgroundColor = `hsl(${hcompo2},${s}%,${l}%)`;
+
+  const hcompo3 = h + 60;
+  console.log(hcompo3);
+  color3.style.backgroundColor = `hsl(${hcompo3},${s}%,${l}%)`;
+
+  const hcompo4 = h + 140;
+  console.log(hcompo4);
+  color4.style.backgroundColor = `hsl(${hcompo4},${s}%,${l}%)`;
+
+  const hcompo5 = h + 180;
+  console.log(hcompo5);
+  color5.style.backgroundColor = `hsl(${hcompo5},${s}%,${l}%)`;
+}
